@@ -9,7 +9,7 @@ PIDS = []
 	PIDS.push(pid)
 end
 
-def loop_test
+def wait_pids
 	begin
 		pid, status = Process.waitpid2(-1, Process::WNOHANG)
 		pid or return
@@ -27,7 +27,7 @@ end
 
 loop do
 	if PIDS.length > 0
-		loop_test
+		wait_pids
 	else
 		break
 	end
