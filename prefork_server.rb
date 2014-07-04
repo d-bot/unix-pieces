@@ -23,7 +23,7 @@ socket = TCPServer.open('0.0.0.0', 8080)
 	end
 end
 
-2.times do
+5.times do
 	PIDS << fork do
 		$0 = "Prefork: worker"
 		loop do
@@ -43,7 +43,6 @@ def wait_processes
 		pid, status = Process.waitpid2(-1, Process::WNOHANG)
 		pid or return
 		if PIDS.include? pid
-			#log.info "#{pid} terminated"
 			PIDS.delete pid
 			`touch /home/dchoi/projects/unix-pieces/killed_#{pid}`
 		else
