@@ -49,6 +49,6 @@ PIDS.each { |id| log.info "subprocess created as #{id}" }
 
 loop do
 	# Should be tapping child processes
-	sleep 1800
+	sleep
 end
 
