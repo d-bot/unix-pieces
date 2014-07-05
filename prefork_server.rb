@@ -2,11 +2,7 @@
 Process.daemon
 
 require 'socket'
-require 'logger'
 
-log = Logger.new('/home/dchoi/projects/unix-pieces/test.log')
-
-log.info "=======> master pid: #{$$}"
 PIDS = []
 $0 = "Prefork: non-block mode"
 
@@ -44,8 +40,6 @@ end
 		end
 	end
 end
-
-PIDS.each { |id| log.info "subprocess created as #{id}" }
 
 loop do
 	# Should be tapping child processes
