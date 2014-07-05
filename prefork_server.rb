@@ -13,7 +13,6 @@ socket = TCPServer.open('0.0.0.0', 8080)
 	trap(sig) do
 		PIDS.each { |pid|
 			Process.kill(sig, pid)
-			s = rand(10000); `touch /home/dchoi/projects/unix-pieces/sent_#{sig}_to_#{pid}`
 		}
 		exit	# if not exit, no child processes will be terminated
 	end
@@ -24,7 +23,6 @@ trap(:CHLD) do
 		pid, status = Process.waitpid2 -1
 		if PIDS.include? pid
 			PIDS.delete pid
-			`touch /home/dchoi/projects/unix-pieces/killed_#{pid}`
 		end
 	rescue Errno::ECHILD
 	end
